@@ -3,6 +3,8 @@ class Batch:
         self.filename:str = FileName
         self.__clear()
         self.__create()
+        for i in ["echo off", "cls"]:
+            self.__appendFile(i)
 
     def __splittedFileName(self):
         return self.filename.split('.')[0] + ".bat"
@@ -26,8 +28,12 @@ class Batch:
         f.close()
 
     def cvar(self, variableName:str, content):
-        self.__appendFile(f"SET /A {variableName} = {str(content)}")
+        self.__appendFile(f"SET {variableName}={str(content)}")
         return f"%{variableName}%"
 
     def cprint(self, cvar:str):
         self.__appendFile(f"echo {cvar}")
+
+    def cinput(self, variableName:str ,content):
+        self.__appendFile(f"SET /p {variableName}={str(content)}")
+        return f"%{variableName}%"
