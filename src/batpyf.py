@@ -37,3 +37,9 @@ class Batch:
     def cinput(self, variableName:str ,content):
         self.__appendFile(f"SET /p {variableName}={str(content)}")
         return f"%{variableName}%"
+    
+    def getch(self, content):
+        self.__appendFile(f"SET /p NULLNULLNULLNULLNULLNULLNULLNULLgetchNULLNULLNULLNULLNULLNULLNULLNULL={content}\nexit")
+    
+    def custom(self, command:str):
+        self.__appendFile(command)
